@@ -248,6 +248,17 @@ class TestInlineMarkdown(unittest.TestCase):
             ],
         )
 
+    def test_text_to_textnodes_bold_in_link(self):
+        text = "Click this [**bold** link](https://boot.dev)"
+        nodes = text_to_textnodes(text)
+        self.assertListEqual(
+            [
+                TextNode("Click this ", TextType.TEXT),
+                TextNode("**bold** link", TextType.LINK, "https://boot.dev"),
+            ],
+            nodes,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
