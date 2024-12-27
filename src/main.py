@@ -2,7 +2,7 @@ import os
 import shutil
 
 from copystatic import copy_dir
-from generatepage import generate_page
+from generatepage import generate_pages_recursive
 
 
 dir_path_static = "./static"
@@ -15,11 +15,7 @@ def main():
     if os.path.exists(dir_path_public):
         shutil.rmtree(dir_path_public)
     copy_dir(dir_path_static, dir_path_public)
-    generate_page(
-        os.path.join(dir_path_content, "index.md"),
-        template_path,
-        os.path.join(dir_path_public, "index.html"),
-    )
+    generate_pages_recursive(dir_path_content, template_path, dir_path_public)
 
 
 main()
